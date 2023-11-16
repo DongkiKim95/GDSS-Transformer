@@ -1,0 +1,56 @@
+data:
+  data: ZINC250k
+  dir: './data'
+  batch_size: 1024 #64 #512
+  max_node_num: 38
+  max_feat_num: 9
+  init: atom
+  perm_mix: True
+
+sde:
+  x: 
+    type: VP
+    beta_min: 0.1
+    beta_max: 1.0
+    num_scales: 1000
+  adj:
+    type: VE
+    beta_min: 0.2
+    beta_max: 1.0
+    num_scales: 1000
+
+model:
+  type: transformer_mol
+  num_layers: 9
+  input_dims:
+    E: 2
+    y: 0
+  hidden_mlp_dims:
+    X: 256
+    E: 128
+    y: 128
+  hidden_dims:
+    dx: 256
+    de: 64
+    dy: 64
+    n_head: 8
+    dim_ffX: 256
+    dim_ffE: 128
+    dim_ffy: 128
+  adj_scale: 3
+
+train:
+  lambda_train: 5
+  name: test
+  num_epochs: 500
+  save_interval: 20
+  print_interval: 1000
+  reduce_mean: False 
+  lr: 2.0e-4 
+  lr_schedule: False 
+  ema: 0.999
+  weight_decay: 1.0e-12 
+  grad_norm: 1.0
+  lr_decay: 0.999
+  eps: 1.0e-5
+  optimizer: adamw

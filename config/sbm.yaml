@@ -1,0 +1,79 @@
+data: 
+  data: sbm
+  dir: './data'
+  batch_size: 64
+  test_split: 0.2
+  max_node_num: 192 
+  max_feat_num: 24
+  feat:
+    type: 
+      - deg
+    scale: 1
+    norm: False
+  perm_mix: True
+
+sde:
+  x: 
+    type: VP
+    beta_min: 0.1
+    beta_max: 1.0
+    num_scales: 1000
+  adj: 
+    type: VP
+    beta_min: 0.1
+    beta_max: 1.0
+    num_scales: 1000
+
+model:
+  type: transformer
+  num_layers: 8
+  input_dims:
+    E: 2
+    y: 0
+  hidden_mlp_dims:
+    X: 128
+    E: 64
+    y: 128
+  hidden_dims:
+    dx: 256
+    de: 64
+    dy: 64
+    n_head: 8
+    dim_ffX: 256
+    dim_ffE: 64
+    dim_ffy: 256
+  
+train:
+  lambda_train: 5
+  name: test
+  num_epochs: 30000
+  save_interval: 1000 
+  print_interval: 100
+  eval: False
+  reduce_mean: False 
+  lr: 2.0e-4 
+  lr_schedule: False 
+  ema: 0.999
+  weight_decay: 1.0e-12 
+  grad_norm: 1.0
+  lr_decay: 0.999
+  eps: 1.0e-5
+  optimizer: adamw
+
+sampler:
+  predictor: Euler
+  corrector: None
+  snr: 0.0
+  scale_eps: 0.0
+  n_steps: 1
+
+ckpt: sbm
+
+sample:
+  batch_size: 40
+  use_ema: True
+  noise_removal: True
+  probability_flow: False
+  eps: 1.0e-3
+  seed: 42
+  kernel: tv

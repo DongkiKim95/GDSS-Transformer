@@ -1,0 +1,55 @@
+data:
+  data: QM9
+  dir: './data'
+  batch_size: 1024 #2048
+  max_node_num: 9
+  max_feat_num: 4
+  init: atom
+  perm_mix: True
+
+sde:
+  x:
+    type: VE
+    beta_min: 0.1
+    beta_max: 1.0
+    num_scales: 1000
+  adj:
+    type: VE
+    beta_min: 0.1
+    beta_max: 1.0
+    num_scales: 1000
+
+model:
+  type: transformer_mol
+  num_layers: 8 
+  input_dims:
+    E: 2
+    y: 0
+  hidden_mlp_dims:
+    X: 256
+    E: 256
+    y: 128
+  hidden_dims:
+    dx: 256
+    de: 128
+    dy: 64
+    n_head: 8
+    dim_ffX: 256
+    dim_ffE: 256
+    dim_ffy: 128
+
+train:
+  lambda_train: 5
+  name: test
+  num_epochs: 1000
+  save_interval: 100 
+  print_interval: 10000
+  reduce_mean: False 
+  lr: 2.0e-4 
+  lr_schedule: False 
+  ema: 0.999
+  weight_decay: 1.0e-12 
+  grad_norm: 1.0
+  lr_decay: 0.999
+  eps: 1.0e-5
+  optimizer: adamw
