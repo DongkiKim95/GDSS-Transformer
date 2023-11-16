@@ -6,9 +6,9 @@ ckpt: ZINC250k
 
 sampler:
   predictor: Reverse
-  corrector: Langevin
-  snr: 0.2
-  scale_eps: 0.7
+  corrector: None
+  snr: 0.0
+  scale_eps: 0.0
   n_steps: 1
 
 sample:

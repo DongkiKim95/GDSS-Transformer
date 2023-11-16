@@ -92,8 +92,6 @@ We provide checkpoints of the pretrained models in the follwoing links:
 
 ## Citation
 
-If you found the provided code with our paper useful in your work, we kindly request that you cite our work.
-
 ```BibTex
 @article{jo2022GDSS,
   author    = {Jaehyeong Jo and
