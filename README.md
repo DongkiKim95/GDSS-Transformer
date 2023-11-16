@@ -66,7 +66,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python main.py --type train --config planar --seed 
 ```
 and
 ```sh
-CUDA_VISIBLE_DEVICES=0,1,2,3 python main.py --type train --config qm9 --seed 42
+CUDA_VISIBLE_DEVICES=0 python main.py --type train --config qm9 --seed 42
 ```
 
 ### 3. Generation and Evaluation
